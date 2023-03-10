@@ -17,6 +17,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: docker build -t mjic99/multi-client ./client
       - run: docker push mjic99/multi-client
 
@@ -24,6 +25,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: docker build -t mjic99/multi-nginx ./nginx
       - run: docker push mjic99/multi-nginx
 
@@ -31,6 +33,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: docker build -t mjic99/multi-server ./server
       - run: docker push mjic99/multi-server
 
@@ -38,6 +41,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: docker build -t mjic99/multi-worker ./worker
       - run: docker push mjic99/multi-worker
 
@@ -45,6 +49,8 @@ jobs:
     needs: [test, build-client, build-nginx, build-server, build-worker]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
