@@ -48,8 +48,8 @@ jobs:
       run: docker run -e CI=true mjic99/react-test npm test
 
     - run: docker build -t mjic99/multi-client:latest -t mjic99/multi-client:${{ github.sha }} -f ./client/Dockerfile ./client
-    - run: docker build -t mjic99/multi-server:latest -t mjic99/multi-server:${{ github.sha }} -f ./client/Dockerfile ./server
-    - run: docker build -t mjic99/multi-worker:latest -t mjic99/multi-worker:${{ github.sha }} -f ./client/Dockerfile ./worker
+    - run: docker build -t mjic99/multi-server:latest -t mjic99/multi-server:${{ github.sha }} -f ./server/Dockerfile ./server
+    - run: docker build -t mjic99/multi-worker:latest -t mjic99/multi-worker:${{ github.sha }} -f ./worker/Dockerfile ./worker
 
     - run: docker push mjic99/multi-client:latest
     - run: docker push mjic99/multi-server:latest
